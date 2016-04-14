@@ -1,5 +1,5 @@
 /**
- * Created by delog on 3/19/2016.
+ * Created by Nate Holloway on 3/19/2016.
  * This class will demonstrate project one.
  */
 import java.util.ArrayList;
@@ -59,9 +59,11 @@ public class TestProjectOne {
         LineReader reader = new LineReader(fileArts);
         String musicID;
         String title;
-        String thirdEntry;
+        String thirdEntry = null;
         String appValue;
         String artName;
+        int appraisedValueTotal = 0;
+        int artWork = 0;
 
         while ((line = reader.readLine()) != null) {
 
@@ -75,6 +77,8 @@ public class TestProjectOne {
 
                 //convert the string to an integer
                 int artistID = (Integer.valueOf(thirdEntry));
+                appraisedValueTotal += (Integer.valueOf(appValue));
+                artWork++;
 
                 //go to the artTable
                 //get the catalog object that is at the artistID's index position
@@ -89,6 +93,11 @@ public class TestProjectOne {
             }
 
         }
+
+        String finalRecord = ("\n" + "Total number of artists: "+ thirdEntry + "\n"
+                + "Total number of titles: "+ artWork + "\n"
+                + "Total appraised Value: $"+ appraisedValueTotal);
+        myFile2.addRecords(finalRecord);
 
         myFile2.closeFile();
 
@@ -110,6 +119,8 @@ public class TestProjectOne {
         aFile.closeFile();
         System.out.println();
     }
+
+
 }
 
 
