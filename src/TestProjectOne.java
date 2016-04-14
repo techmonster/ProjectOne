@@ -59,11 +59,13 @@ public class TestProjectOne {
         LineReader reader = new LineReader(fileArts);
         String musicID;
         String title;
-        String thirdEntry = null;
+        String thirdEntry;
         String appValue;
         String artName;
         int appraisedValueTotal = 0;
         int artWork = 0;
+        int startingArtistID = 0;
+        int totalArtist = 0;
 
         while ((line = reader.readLine()) != null) {
 
@@ -77,6 +79,8 @@ public class TestProjectOne {
 
                 //convert the string to an integer
                 int artistID = (Integer.valueOf(thirdEntry));
+                startingArtistID = totalArtists(artistID, startingArtistID); //return the highest artistID since it increments by one
+                totalArtist = startingArtistID;
                 appraisedValueTotal += (Integer.valueOf(appValue));
                 artWork++;
 
@@ -94,7 +98,7 @@ public class TestProjectOne {
 
         }
 
-        String finalRecord = ("\n" + "Total number of artists: "+ thirdEntry + "\n"
+        String finalRecord = ("\n" + "Total number of artists: "+ totalArtist + "\n"
                 + "Total number of titles: "+ artWork + "\n"
                 + "Total appraised Value: $"+ appraisedValueTotal);
         myFile2.addRecords(finalRecord);
@@ -120,6 +124,14 @@ public class TestProjectOne {
         System.out.println();
     }
 
+    private static int totalArtists(int artistID, int startingArtistID){
+
+        if ( artistID > startingArtistID){
+            startingArtistID = artistID;
+        }
+
+        return startingArtistID;
+    }
 
 }
 
